@@ -1,0 +1,36 @@
+@import './include/mixin';
+@import './include/variables';
+@import './include/header';
+@import './include/footer';
+
+// PAGES
+@import './include/pages/login';
+
+
+// Reset
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: $bg-color;
+  display: flex;
+  flex-direction: column;
+
+  .main-container {
+    flex-grow: 1;
+  }
+}
+
+.cs-pointer {
+  cursor: pointer;
+}

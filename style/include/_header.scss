@@ -1,0 +1,20 @@
+header {
+  @include flex($justify: space-between);
+  height: 85px;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 55px;
+  font-family: $titleFont;
+}
+
+.without-header {
+  font-size: 65px;
+  padding-left: 48px;
+
+  @include responsive($sm) {
+    padding: 0;
+    text-align: center;
+  }
+}

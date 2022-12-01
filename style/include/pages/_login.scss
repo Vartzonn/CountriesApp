@@ -1,0 +1,47 @@
+.login-forms-container {
+  @include flex(column, flex-start);
+
+  .login-forms {
+    position: relative;
+    width: 400px;
+    height: 500px;
+    background-color: $form-bg;
+    transition: transform .3s;
+    transform-style: preserve-3d;
+
+    .card-back {
+      transform: rotateY(180deg);
+      background-color: $form-bg;
+    }
+
+    .card-front,
+    .card-back {
+      top: 0;
+      left: 0;
+      position: absolute;
+      backface-visibility: hidden;
+      height: 100%;
+      width: 100%;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        white-space: nowrap;
+        width: 50%;
+        
+        @include responsive($sm) {
+          width: 75%;
+        }
+      }
+    }
+
+    @include responsive($sm) {
+      width: 90%;
+    }
+  }
+}
