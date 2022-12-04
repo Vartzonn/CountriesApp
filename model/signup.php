@@ -39,7 +39,7 @@
               }
               finally {
                 try {
-                  $userdata = $conn->query("SELECT * FROM user WHERE pseudo = '$pseudo'")->fetch(PDO::FETCH_OBJ);
+                  $userdata = $conn->query("SELECT pseudo, mail FROM user WHERE pseudo = '$pseudo'")->fetch(PDO::FETCH_OBJ);
                 }
                 catch (PDOException $e) {
                   echo "Error: " . $e;

@@ -1,12 +1,19 @@
 header {
   @include flex($justify: space-between);
-  height: 85px;
-  background-color: #fff;
+  height: 70px;
+  padding: 0 1rem;
+  background-color: $header-bg;
+
+  @include responsive(400px) {
+    height: auto;
+    padding: 0 0 .5rem 0;
+    flex-direction: column;
+  }
 }
 
 .title {
   font-size: 55px;
-  font-family: $titleFont;
+  font-family: $cursiveFont;
 }
 
 .without-header {

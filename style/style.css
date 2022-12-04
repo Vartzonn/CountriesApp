@@ -3,8 +3,16 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 85px;
-  background-color: #fff;
+  height: 70px;
+  padding: 0 1rem;
+  background-color: rgba(126, 213, 207, 0.6);
+}
+@media screen and (max-width: 400px) {
+  header {
+    height: auto;
+    padding: 0 0 0.5rem 0;
+    flex-direction: column;
+  }
 }
 
 .title {
@@ -25,13 +33,56 @@ header {
 
 footer {
   width: 100%;
-  height: 60px;
+  height: auto;
+  padding: 12px;
   background-color: #222;
   color: #f1f1f1;
+}
+footer nav {
+  width: 100%;
+  font-size: 18px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
+}
+@media screen and (max-width: 576px) {
+  footer nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+footer nav .networks-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+footer nav a {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+footer nav a.no-underline:hover {
+  color: #cbcbcb;
+}
+footer nav a:not(.no-underline) {
+  position: relative;
+}
+footer nav a:not(.no-underline)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 0%;
+  height: 1.5px;
+  background-color: #f1f1f1;
+  transition: width 0.2s;
+}
+footer nav a:not(.no-underline):hover::after {
+  width: 100%;
+}
+footer nav a:not(.no-underline):hover {
+  color: #f1f1f1;
 }
 
 .login-forms-container {
@@ -79,6 +130,54 @@ footer {
 @media screen and (max-width: 576px) {
   .login-forms-container .login-forms {
     width: 90%;
+  }
+}
+
+.home-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 30px 0;
+}
+.home-container a {
+  color: black;
+  text-decoration: none;
+  font-size: 60px;
+  position: relative;
+  font-family: arial, sans-serif;
+  animation: fadeIn 0.4s ease-out;
+}
+.home-container a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 0%;
+  height: 1.5px;
+  background-color: black;
+  transition: width 0.2s;
+}
+.home-container a:hover::after {
+  width: 100%;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media screen and (max-width: 576px) {
+  .home-container a {
+    font-size: 45px;
   }
 }
 

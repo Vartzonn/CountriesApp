@@ -1,7 +1,44 @@
 footer {
   width: 100%;
-  height: 60px;
-  background-color: #222;
+  height: auto;
+  padding: 12px;
+  background-color: $footer-bg;
   color: #f1f1f1;
-  @include flex(column, center, center);
+
+  nav {
+    width: 100%;
+    font-size: 18px;
+    @include flex($justify: space-around);
+    @include responsive($sm) {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .networks-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    a {
+      $links-color: #f1f1f1;
+      color: $links-color;
+      text-decoration: none;
+
+      &.no-underline {
+        &:hover {
+          color: darken($links-color, 15%);
+        }
+      }
+
+      &:not(.no-underline) {
+        @include after-element($links-color);
+
+        &:hover {
+          color: $links-color;
+        }
+      }
+
+    }
+  }
 }
