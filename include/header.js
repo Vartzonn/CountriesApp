@@ -7,3 +7,9 @@ if(logoutBtn) {
     }
   });
 }
+
+// Quand on clique sur le titre ça nous redirige vers le page d'acceuil
+const title = document.querySelector('header .title');
+title.addEventListener('click', () => {
+  window.location.href = '/ProjetSolo/index.php';
+})

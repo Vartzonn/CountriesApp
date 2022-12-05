@@ -1,8 +1,9 @@
 header {
   @include flex($justify: space-between);
-  height: 70px;
+  height: 75px;
   padding: 0 1rem;
   background-color: $header-bg;
+  border-bottom: 4px solid black;
 
   @include responsive(400px) {
     height: auto;

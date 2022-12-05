@@ -32,7 +32,7 @@
 <body>
   <?php if(!in_array(basename($_SERVER["SCRIPT_FILENAME"], '.php'), $noHeader)) { ?>
     <header>
-      <h1 class='title'>CountriesApp</h1>
+      <h1 class='title cs-pointer'>CountriesApp</h1>
       <nav>
         <a href="#" class="btn btn-primary me-2">
           <i class='fa-solid fa-user'></i>
