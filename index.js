@@ -1,25 +1,3 @@
-const baseApiUrl = "https://restcountries.com/v3.1";
-const storageKey = 'allCountries';
-
-let allCountries;
-
-function getAllCountries() {
-  const datas = sessionStorage.getItem(storageKey);
-  if(datas) {
-    allCountries = JSON.parse(datas);
-  }
-  else {
-    fetch(baseApiUrl + '/all')
-      .then(res => res.json())
-      .then(data => {
-        sessionStorage.setItem(storageKey, JSON.stringify(data));
-        allCountries = data;
-      })
-  }
-}
-getAllCountries();
-
-
 // Afficher les carousels de drapeaux
 const carouselContainers = document.querySelectorAll('.flags-carousel-container');
 carouselContainers.forEach(carousel => {
@@ -41,5 +19,7 @@ carouselContainers.forEach(carousel => {
       carousel.appendChild(carouselItem);
     }
   }
-  carousel.style.opacity = '1';
+  setTimeout(() => {
+    carousel.style.opacity = '1';
+  }, 500)
 })

@@ -1,6 +1,13 @@
 <?php 
   $path = "/ProjetSolo";
   $noHeader = ['login'];
+  $isNoHeaderPage = in_array(basename($_SERVER["SCRIPT_FILENAME"], '.php'), $noHeader);
+
+  // On vérifie si on est bien login sinon on redirige vers la page de login
+  if(!$isNoHeaderPage) {
+    require "../../model/functions.php";
+    logged_only();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -26,11 +33,15 @@
 
   <!-- MAIN JS FILE -->
   <script src=<?= "$path/include/header.js" ?> defer type="text/javascript"></script>
+  <!-- <script src=<?= "$path/include/global.js" ?> defer type="text/javascript"></script> -->
+  <script type="module" defer>
+    import "<?=$path?>/include/global.js";
+  </script>
 
   <title>CoutriesApp</title>
 </head>
 <body>
-  <?php if(!in_array(basename($_SERVER["SCRIPT_FILENAME"], '.php'), $noHeader)) { ?>
+  <?php if(!$isNoHeaderPage) { ?>
     <header>
       <h1 class='title cs-pointer'>CountriesApp</h1>
       <nav>

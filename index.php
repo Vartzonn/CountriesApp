@@ -1,8 +1,4 @@
 <?php
-  // On vérifie si on est bien login
-  require './model/functions.php';
-  logged_only();
-
   include './include/header.php';
 ?>
 

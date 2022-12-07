@@ -1,0 +1,24 @@
+.revise-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  column-gap: 15px;
+  row-gap: 30px;
+  padding: 30px;
+
+  @include responsive($lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include responsive($sm) {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 90%;
+
+    @include responsive($sm) {
+      width: 100%;
+    }
+  }
+}

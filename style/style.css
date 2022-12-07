@@ -86,54 +86,6 @@ footer nav a:not(.no-underline):hover {
   color: #f1f1f1;
 }
 
-.login-forms-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-.login-forms-container .login-forms {
-  position: relative;
-  width: 400px;
-  height: 500px;
-  background-color: white;
-  transition: transform 0.3s;
-  transform-style: preserve-3d;
-}
-.login-forms-container .login-forms .card-back {
-  transform: rotateY(180deg);
-  background-color: white;
-}
-.login-forms-container .login-forms .card-front,
-.login-forms-container .login-forms .card-back {
-  top: 0;
-  left: 0;
-  position: absolute;
-  backface-visibility: hidden;
-  height: 100%;
-  width: 100%;
-}
-.login-forms-container .login-forms .button-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.login-forms-container .login-forms .button-container button {
-  white-space: nowrap;
-  width: 50%;
-}
-@media screen and (max-width: 576px) {
-  .login-forms-container .login-forms .button-container button {
-    width: 75%;
-  }
-}
-@media screen and (max-width: 576px) {
-  .login-forms-container .login-forms {
-    width: 90%;
-  }
-}
-
 .home-container {
   width: 100%;
   height: 100%;
@@ -232,6 +184,82 @@ footer nav a:not(.no-underline):hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.login-forms-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.login-forms-container .login-forms {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  background-color: white;
+  transition: transform 0.3s;
+  transform-style: preserve-3d;
+}
+.login-forms-container .login-forms .card-back {
+  transform: rotateY(180deg);
+  background-color: white;
+}
+.login-forms-container .login-forms .card-front,
+.login-forms-container .login-forms .card-back {
+  top: 0;
+  left: 0;
+  position: absolute;
+  backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
+}
+.login-forms-container .login-forms .button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-forms-container .login-forms .button-container button {
+  white-space: nowrap;
+  width: 50%;
+}
+@media screen and (max-width: 576px) {
+  .login-forms-container .login-forms .button-container button {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .login-forms-container .login-forms {
+    width: 90%;
+  }
+}
+
+.revise-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  column-gap: 15px;
+  row-gap: 30px;
+  padding: 30px;
+}
+@media screen and (max-width: 992px) {
+  .revise-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 576px) {
+  .revise-container {
+    grid-template-columns: 1fr;
+  }
+}
+.revise-container .card {
+  width: 90%;
+}
+@media screen and (max-width: 576px) {
+  .revise-container .card {
+    width: 100%;
+  }
 }
 
 *,
