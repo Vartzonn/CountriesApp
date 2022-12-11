@@ -1,0 +1,17 @@
+Loader
+
+Page réviser :
+	Filtres
+
+Page jouer :
+	Tout
+
+Page classement : 
+	Tout
+
+Page admin :
+	Tout
+
+Maquette
+Dossier
+Cahier des charges ?

@@ -1,11 +1,17 @@
 <?php 
   $path = "/ProjetSolo";
+  $fileName = $_SERVER["SCRIPT_FILENAME"];
   $noHeader = ['login'];
-  $isNoHeaderPage = in_array(basename($_SERVER["SCRIPT_FILENAME"], '.php'), $noHeader);
+  $isNoHeaderPage = in_array(basename($fileName, '.php'), $noHeader);
 
   // On vérifie si on est bien login sinon on redirige vers la page de login
   if(!$isNoHeaderPage) {
-    require "../../model/functions.php";
+    if(str_contains($fileName, '/ProjetSolo/pages')) {
+      require "../../model/functions.php";
+    }
+    else {
+      require "./model/functions.php";
+    }
     logged_only();
   }
 ?>
@@ -16,6 +22,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/x-icon" href="<?=$path?>/favicon.svg">
 
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +41,6 @@
 
   <!-- MAIN JS FILE -->
   <script src=<?= "$path/include/header.js" ?> defer type="text/javascript"></script>
-  <!-- <script src=<?= "$path/include/global.js" ?> defer type="text/javascript"></script> -->
   <script type="module" defer>
     import "<?=$path?>/include/global.js";
   </script>
@@ -44,14 +51,10 @@
   <?php if(!$isNoHeaderPage) { ?>
     <header>
       <h1 class='title cs-pointer'>CountriesApp</h1>
-      <nav>
-        <a href="#" class="btn btn-primary me-2">
-          <i class='fa-solid fa-user'></i>
-        </a>
-        <a href=<?= "$path/model/logout.php" ?> class="btn btn-danger logout-btn">
-          <i class="fa-solid fa-power-off"></i>
-        </a>
-      </nav>
+
+      <a href=<?= "$path/model/logout.php" ?> class="btn btn-danger logout-btn">
+        <i class="fa-solid fa-power-off"></i>
+      </a>
     </header>
   <?php } else { ?>
     <h1 class='without-header title pt-4'>CountriesApp</h1>

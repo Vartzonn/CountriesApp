@@ -1,3 +1,5 @@
+import { allCountries } from './include/global.js';
+
 // Afficher les carousels de drapeaux
 const carouselContainers = document.querySelectorAll('.flags-carousel-container');
 carouselContainers.forEach(carousel => {

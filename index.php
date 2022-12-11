@@ -12,7 +12,9 @@
   <div class="flags-carousel-container reverse"></div>
 </div>
 
-<script type='text/javascript' src='./index.js'></script>
+<script type='module'>
+  import './index.js';
+</script>
 
 <?php
   include './include/footer.php'; 

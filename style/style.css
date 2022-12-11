@@ -234,6 +234,36 @@ footer nav a:not(.no-underline):hover {
   }
 }
 
+.filter-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.filter-container .select-container {
+  width: 40%;
+  font-size: 20px;
+}
+@media screen and (max-width: 430px) {
+  .filter-container .select-container {
+    font-size: 14px;
+  }
+}
+.filter-container .search-container {
+  width: 40%;
+}
+@media screen and (max-width: 992px) {
+  .filter-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .filter-container .select-container, .filter-container .search-container {
+    width: 90%;
+    justify-content: center;
+  }
+}
+
 .revise-container {
   width: 100%;
   display: grid;
@@ -254,11 +284,19 @@ footer nav a:not(.no-underline):hover {
   }
 }
 .revise-container .card {
-  width: 90%;
+  width: 95%;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .revise-container .card {
     width: 100%;
+  }
+}
+.revise-container .card .info-list {
+  font-size: 16px;
+}
+@media screen and (max-width: 768px) {
+  .revise-container .card .info-list {
+    font-size: 14px;
   }
 }
 

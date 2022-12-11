@@ -1,3 +1,30 @@
+.filter-container {
+  width: 100%;
+  @include flex($justify: space-around);
+  
+  .select-container {
+    width: 40%;
+    font-size: 20px;
+
+    @include  responsive(430px) {
+      font-size: 14px;
+    }
+  }
+  .search-container {
+    width: 40%;
+  }
+
+  @include responsive($lg) {
+    flex-direction: column;
+    gap: 20px;
+    
+    .select-container, .search-container {
+      width: 90%;
+      justify-content: center;
+    }
+  }
+}
+
 .revise-container {
   width: 100%;
   display: grid;
@@ -15,10 +42,18 @@
   }
 
   .card {
-    width: 90%;
+    width: 95%;
 
-    @include responsive($sm) {
+    @include responsive($md) {
       width: 100%;
+    }
+
+    .info-list {
+      font-size: 16px;
+
+      @include responsive($md) {
+        font-size: 14px;
+      }
     }
   }
 }
