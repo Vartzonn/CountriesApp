@@ -19,7 +19,6 @@
           </div>
 
           <a href="https://restcountries.com/" target="_blank">API Documentation</a>
-          <a href="#">Test</a>
         </nav>
       </footer>
     <?php } ?>
