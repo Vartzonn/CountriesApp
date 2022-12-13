@@ -280,22 +280,53 @@ footer nav a:not(.no-underline):hover {
   align-items: center;
   gap: 40px;
 }
+@media screen and (max-width: 576px) {
+  .play-container .game-container {
+    gap: 20px;
+  }
+}
 .play-container .game-container .question-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 80%;
-  height: 300px;
+  height: 200px;
   text-align: center;
+}
+.play-container .game-container .question-container.contain-flag {
+  height: 300px;
 }
 .play-container .game-container .question-container .question-item {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 80%;
   height: 90%;
+}
+.play-container .game-container .question-container .question-item .question {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2.5em;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.play-container .game-container .question-container .question-item .question-loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.play-container .game-container .question-container .question-item .question-loader_active {
+  display: block;
 }
 @media screen and (max-width: 576px) {
   .play-container .game-container .question-container {
@@ -309,6 +340,11 @@ footer nav a:not(.no-underline):hover {
   place-items: end;
   gap: 20px;
 }
+@media screen and (max-width: 576px) {
+  .play-container .game-container .answer-container {
+    gap: 15px;
+  }
+}
 .play-container .game-container .answer-container .answer {
   display: flex;
   flex-direction: row;
@@ -317,9 +353,18 @@ footer nav a:not(.no-underline):hover {
   width: 50%;
   height: 60px;
   border-radius: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 .play-container .game-container .answer-container .answer:nth-child(2n) {
   justify-self: start;
+}
+.play-container .game-container .answer-container .answer.contain-flag {
+  height: 100px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @media screen and (max-width: 768px) {
   .play-container .game-container .answer-container .answer {

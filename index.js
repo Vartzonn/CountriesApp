@@ -23,5 +23,5 @@ carouselContainers.forEach(carousel => {
   }
   setTimeout(() => {
     carousel.style.opacity = '1';
-  }, 500)
+  }, 100)
 })

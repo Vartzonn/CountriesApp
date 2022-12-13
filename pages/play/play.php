@@ -27,7 +27,12 @@
   <div class="game-container w-100 h-100 p-4">
     <div class="question-container">
       <h3 class="question-title">A quel pays appartient ce drapeau ?</h3>
-      <div class="question-item">DRAPEAU</div>
+      <div class="question-item">
+        <div class="fa-4x question-loader question-loader_active">
+          <i class="fas fa-spinner fa-pulse"></i>
+        </div>
+        <div class="question"></div>
+      </div>
     </div>
     <div class="answer-container">
       <button type='button' class="btn btn-outline-primary answer">A</button>
@@ -38,7 +43,9 @@
   </div>
 </div>
 
-<script type="text/javascript" src="./play.js"></script>
+<script type="module">
+  import './play.js';
+</script>
 
 <?php 
   include '../../include/footer.php';

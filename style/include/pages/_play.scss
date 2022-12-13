@@ -42,16 +42,47 @@
     @include flex(column);
     gap: 40px;
 
+    @include responsive($sm) {
+      gap: 20px;
+    }
+
     .question-container {
       @include flex(column, flex-start);
       width: 80%;
-      height: 300px;
+      height: 200px;
       text-align: center;
+
+      &.contain-flag {
+        height: 300px;
+      }
 
       .question-item {
         @include flex;
+        position: relative;
         width: 80%;
         height: 90%;
+
+        .question {
+          @include flex;
+          width: 100%;
+          height: 100%;
+          font-size: 2.5em;
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .question-loader {
+          display: none;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          &_active {
+            display: block;
+          }
+        }
       }
 
       @include responsive($sm) {
@@ -66,14 +97,28 @@
       place-items: end;
       gap: 20px;
 
+      @include responsive($sm) {
+        gap: 15px;
+      }
+
       .answer {
         @include flex;
         width: 50%;
         height: 60px;
         border-radius: 10px;
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: .5px;
 
         &:nth-child(2n) {
           justify-self: start;
+        }
+        
+        &.contain-flag {
+          height: 100px;
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
         }
 
         @include responsive($md) {
