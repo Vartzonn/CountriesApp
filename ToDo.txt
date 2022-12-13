@@ -1,5 +1,7 @@
 Loader
 
+Code pour créer la BDD
+
 Header :
 	Navigation
 
@@ -7,7 +9,7 @@ Page réviser :
 	Filtres
 
 Page jouer :
-	Tout
+	Score
 
 Page classement : 
 	Tout
