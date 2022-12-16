@@ -438,6 +438,9 @@ footer nav a:not(.no-underline):hover {
     width: 100%;
   }
 }
+.revise-container .card .card-img-top {
+  max-height: 240px;
+}
 .revise-container .card .info-list {
   font-size: 16px;
 }
@@ -445,6 +448,14 @@ footer nav a:not(.no-underline):hover {
   .revise-container .card .info-list {
     font-size: 14px;
   }
+}
+
+.goToTop {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  bottom: 3%;
+  right: 2%;
 }
 
 *,

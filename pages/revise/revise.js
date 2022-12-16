@@ -46,6 +46,7 @@ function createCard(country) {
   // On crée la carte du pays
   const card = document.createElement('div');
   card.classList.add('card');
+  card.setAttribute('continent', continentTrad);
   card.id = countryName;
   card.innerHTML = `
     <img 
@@ -82,3 +83,72 @@ for(let continent in frenchContinentTrad) {
   option.innerHTML = continentTrad;
   selectContinent.appendChild(option);
 }
+// Au changement du continent dans le select, on filtre les cartes
+let continentFilter = 'all';
+selectContinent.addEventListener('change', (ev) => {
+  continentFilter = ev.target.value;
+  checkFilter();
+})
+
+// On crée un regex pour comparer la valeur de l'input avec le nom du pays
+let filteredValue = '';
+let filteredRegex = new RegExp(filteredValue, 'gi');
+// A l'input sur la barre de recherche on filtre les cartes
+const filterInput = document.querySelector('#filter-country');
+filterInput.addEventListener('input', (ev) => {
+  filteredValue = ev.target.value;
+  filteredRegex = new RegExp(filteredValue, 'gi');
+  checkFilter();
+})
+
+// On check les filtres
+function checkFilter() {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    // On filtre par rapport au continent dans le select
+    if(continentFilter !== 'all') {
+      if(card.getAttribute('continent') !== continentFilter) {
+        card.style.display = 'none';
+        card.setAttribute('filtered', 'true');
+      }
+      else {
+        card.style.display = 'flex';
+        card.setAttribute('filtered', 'false');
+      }
+    }
+    else {
+      card.style.display = 'flex';
+      card.setAttribute('filtered', 'false');
+    }
+    
+    // On filtre par rapport à la barre de recherche
+    if(card.id.match(filteredRegex)) {
+      if(card.getAttribute('filtered') == 'false') {
+        card.style.display = 'flex';
+      }
+    }
+    else {
+      card.style.display = 'none';
+    }
+  })
+}
+
+// Bouton pour retourner en haut de la page
+const scrollTopBtn = document.querySelector('.goToTop');
+window.addEventListener('scroll', () => {
+  checkScrollTop();
+})
+scrollTopBtn.addEventListener('click', () => {
+  document.documentElement.scrollTop = 0;
+  setTimeout(() => {
+    scrollTopBtn.style.display = 'none';
+  }, 750)
+})
+
+// Fonction pour faire apparaitre le bouton si on a assez scroll
+function checkScrollTop() {
+  if(document.documentElement.scrollTop > 50) {
+    scrollTopBtn.style.display = 'block';
+  }
+}
+checkScrollTop();
