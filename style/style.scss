@@ -8,6 +8,7 @@
 @import './include/pages/login';
 @import './include/pages/play';
 @import './include/pages/revise';
+@import './include/pages/admin';
 
 
 // Reset
@@ -32,6 +33,10 @@ body {
   .main-container {
     flex-grow: 1;
   }
+}
+
+a {
+  text-decoration: none;
 }
 
 .cs-pointer {

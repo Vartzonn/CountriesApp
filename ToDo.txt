@@ -1,9 +1,6 @@
 Loader
 
-Code pour créer la BDD
-
-Header :
-	Navigation
+Code pour créer la BDD (voir laragon/www/testBDD.php)
 
 Page jouer :
 	Score
@@ -12,7 +9,8 @@ Page classement :
 	Tout
 
 Page admin :
-	Tout
+	Tout : -acces seulement si admin
+				 -CRUD
 
 Maquette du site 
 Dossier sur le site

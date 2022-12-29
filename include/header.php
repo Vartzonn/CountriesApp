@@ -52,9 +52,14 @@
     <header>
       <h1 class='title cs-pointer'>CountriesApp</h1>
 
-      <a href=<?= "$path/model/logout.php" ?> class="btn btn-danger logout-btn">
-        <i class="fa-solid fa-power-off"></i>
-      </a>
+      <nav>
+        <a href="<?=$path?>/pages/play/play.php">Jouer</a>
+        <a href="<?=$path?>/pages/revise/revise.php">Réviser</a>
+        <a href="<?=$path?>/pages/ranking/ranking.php">Classement</a>
+        <a href=<?= "$path/model/logout.php" ?> class="btn btn-danger logout-btn">
+          <i class="fa-solid fa-power-off"></i>
+        </a>
+      </nav>
     </header>
   <?php } else { ?>
     <h1 class='without-header title pt-4'>CountriesApp</h1>

@@ -5,10 +5,25 @@ header {
   background-color: $header-bg;
   border-bottom: 4px solid black;
 
-  @include responsive(400px) {
+  @include responsive($sm) {
     height: auto;
     padding: 0 0 .5rem 0;
     flex-direction: column;
+  }
+
+  nav {
+    @include flex;
+    gap: 13px;
+
+    a {
+      color: black;
+      font-size: 18px;
+      @include after-element(black);
+
+      &:hover {
+        color: black;
+      }
+    }
   }
 }
 
