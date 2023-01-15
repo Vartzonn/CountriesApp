@@ -121,7 +121,7 @@ function generateAnswers() {
       }
     }
 
-    if(randomWrongAnswer == goodCountry) {
+    if(randomWrongAnswer == goodCountry || answerArray.includes(randomWrongAnswer)) {
       i--;
     }
     else {

@@ -22,12 +22,12 @@ header nav {
   align-items: center;
   gap: 13px;
 }
-header nav a {
+header nav a:not(.logout-btn) {
   color: black;
   font-size: 18px;
   position: relative;
 }
-header nav a::after {
+header nav a:not(.logout-btn)::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -38,10 +38,10 @@ header nav a::after {
   background-color: black;
   transition: width 0.2s;
 }
-header nav a:hover::after {
+header nav a:not(.logout-btn):hover::after {
   width: 100%;
 }
-header nav a:hover {
+header nav a:not(.logout-btn):hover {
   color: black;
 }
 

@@ -15,7 +15,7 @@ header {
     @include flex;
     gap: 13px;
 
-    a {
+    a:not(.logout-btn) {
       color: black;
       font-size: 18px;
       @include after-element(black);

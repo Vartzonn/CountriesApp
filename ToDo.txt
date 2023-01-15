@@ -5,7 +5,7 @@ Code pour créer la BDD (voir laragon/www/testBDD.php)
 Page jouer :
 	Score
 
-Page classement : 
+Page classement :
 	Tout
 
 Page admin :
