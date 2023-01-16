@@ -1,5 +1,7 @@
 <?php
   include './include/header.php';
+
+  include './include/loader.php';
 ?>
 
 <div class="home-container">
