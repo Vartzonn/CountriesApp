@@ -6,12 +6,10 @@
     return $data;
   }
 
-  $loginPath = '/ProjetSolo/pages/login/login.php';
-
   function logged_only() {
     session_start();
     if(session_status() == PHP_SESSION_NONE || !isset($_SESSION['auth'])) {
-      // header("Location: $loginPath");
+      header("Location: /ProjetSolo/pages/login/login.php");
     }
   }
 ?>

@@ -126,6 +126,8 @@ footer nav a:not(.no-underline):hover {
   left: 0;
   background-color: #222;
   z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s, z-index 0.5s;
 }
 
 .loader {

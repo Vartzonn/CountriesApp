@@ -7,6 +7,8 @@
   left: 0;
   background-color: #222;
   z-index: 1000;
+  opacity: 1;
+  transition: opacity .5s, z-index .5s;
 }
 
 .loader {

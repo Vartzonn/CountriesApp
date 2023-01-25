@@ -8,12 +8,15 @@
   if(!$isNoHeaderPage) {
     if(str_contains($fileName, '/ProjetSolo/pages')) {
       require "../../model/functions.php";
+      include "../../include/loader.php";
     }
     else {
       require "./model/functions.php";
+      include "./include/loader.php";
     }
     logged_only();
   }
+  
 ?>
 
 <!DOCTYPE html>
