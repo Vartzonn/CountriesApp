@@ -1,9 +1,9 @@
 <?php
   $server = "localhost";
   $user = "root";
-  $db = "countriesapp";
+  $db = "countriesapp2";
   $password = "";
-  
+
   try {
     $conn = new PDO("mysql:host=$server;dbname=$db;charset=utf8", $user, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

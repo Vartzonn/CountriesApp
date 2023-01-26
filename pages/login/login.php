@@ -1,4 +1,4 @@
-<?php 
+<?php
   include '../../include/header.php'; 
 
   require '../../model/variables.php';

@@ -50,7 +50,7 @@
                   header("Location:../index.php");
                 }
               }
-            } 
+            }
             else {
               header("Location:$loginPath");
             }

@@ -1,5 +1,3 @@
-Code pour créer la BDD (voir laragon/www/testBDD.php)
-
 Page jouer :
 	Score
 
