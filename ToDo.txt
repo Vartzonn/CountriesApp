@@ -1,5 +1,6 @@
 Page jouer :
-	Score
+	Score : -style
+					-récup meilleur score au chargement du jeu
 
 Page classement :
 	Tout

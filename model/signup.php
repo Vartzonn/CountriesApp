@@ -28,11 +28,19 @@
 
             if (!empty($_POST) && !empty($hashed) && !empty($pseudo) && !$pseudoCheck && !empty($mail)) {
               try {
-                $req = $conn->prepare('INSERT INTO user(pseudo, password, mail) VALUES(:pseudo, :password, :mail)');
-                $req->bindParam(':pseudo', $pseudo);
-                $req->bindParam(':password', $hashed);
-                $req->bindParam(':mail', $mail);
-                $req->execute();
+                $userReq = $conn->prepare('INSERT INTO user(pseudo, password, mail) VALUES(:pseudo, :password, :mail)');
+                $userReq->bindParam(':pseudo', $pseudo);
+                $userReq->bindParam(':password', $hashed);
+                $userReq->bindParam(':mail', $mail);
+                $userReq->execute();
+
+                $score = 0;
+                $classementReq = $conn->prepare('INSERT INTO classement(pseudo, flagScore, countryScore, capitalScore) VALUES(:pseudo, :flagScore, :countryScore, :capitalScore)');
+                $classementReq->bindParam(':pseudo', $pseudo);
+                $classementReq->bindParam(':flagScore', $score);
+                $classementReq->bindParam(':countryScore', $score);
+                $classementReq->bindParam(':capitalScore', $score);
+                $classementReq->execute();
               } 
               catch (PDOException $e) {
                 echo "Error: " . $e;

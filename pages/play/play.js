@@ -4,6 +4,10 @@ const questionContainer = document.querySelector('.question-container');
 const questionItem = document.querySelector('.question-item');
 const questionLoader = document.querySelector('.question-loader');
 const answersBtn = document.querySelectorAll('.answer');
+const scoreSpan = document.querySelector('.score');
+const bestScoreSpan = document.querySelector('.best-score');
+let scoreNumber = 0;
+let bestScoreNumber = parseInt(bestScoreSpan.textContent);
 let answerArray = [];
 const activeClass = 'question-loader_active';
 let goodCountry = getRandomCountry();
@@ -20,6 +24,9 @@ gameModes.forEach(mode => {
 
       // On récupère un pays aléatoire
       goodCountry = getRandomCountry();
+
+      // On resest les scores
+      resetAllScores();
       
       // On change la question selon le mode choisi
       const questionTitle = document.querySelector('.question-title');
@@ -46,7 +53,9 @@ gameModes.forEach(mode => {
 })
 askFlag();
 
-// Question sur les drapeaux
+/**
+ * Question sur les drapeaux
+ */ 
 function askFlag() {
   clearQuestionItem();
 
@@ -58,7 +67,9 @@ function askFlag() {
   clearLoader();
 }
 
-// Question sur les pays
+/**
+ * Question sur les pays
+*/
 function askCountry() {
   clearQuestionItem();
 
@@ -70,7 +81,9 @@ function askCountry() {
   clearLoader();
 }
 
-// Question sur les capitales
+/**
+ * Question sur les capitales
+*/
 function askCapital() {
   clearQuestionItem();
 
@@ -82,7 +95,9 @@ function askCapital() {
   clearLoader();
 }
 
-
+/**
+ * Affiche toutes les réponses sur les boutons
+*/
 function generateAnswers() {
   const activeMode = document.querySelector('.active-mode');
   const isFlagMode = activeMode.id === 'flag';
@@ -157,7 +172,7 @@ function generateAnswers() {
 const seeResponseTimer = 300;
 answersBtn.forEach(btn => {
   btn.addEventListener('click', () => {
-    // On disabled les boutons pour ne pas pouvoir répondre plusieurs fois
+    // On disabled les boutons pour ne pas pouvoir répondre plusieurs fois d'affilé
     answersBtn.forEach(button => {
       button.setAttribute('disabled', true);
     })
@@ -180,6 +195,8 @@ answersBtn.forEach(btn => {
     if(btn.id == allCountries.indexOf(goodCountry)) {
       btn.classList.add('btn-success');
 
+      setScores(true);
+
       newQuestionAfterResponse(func, btn, true)
     }
     else {
@@ -187,13 +204,57 @@ answersBtn.forEach(btn => {
 
       toggleClassesOnRightBtn();
 
+      setScores(false);
+
       newQuestionAfterResponse(func, btn, false)
     }
   })
 })
 
-// On fait apparaitre une nouvelle question après un setTimeout,
-// On retire/ré-ajoute les classes nécessaires sur les boutons
+/**
+ * On réajuste les scores à chaque réponse
+ * Si le score est supérieur au meilleur score du joueur, on met le nouveau score dans la bdd
+ * @param {boolean} isGoodAnswer si la réponse est bonne on ajoute 1 au score, sinon on passe le score à 0
+*/
+function setScores(isGoodAnswer) {
+  if(isGoodAnswer) {
+    scoreNumber++;
+    scoreSpan.textContent = scoreNumber;
+
+    if(scoreNumber > bestScoreNumber) {
+      bestScoreNumber = scoreNumber;
+      bestScoreSpan.textContent = bestScoreNumber;
+
+      // Ajout du nouveau meilleur score dans la bdd
+      const currentMode = document.querySelector('.active-mode').id;
+      const gameMode = currentMode + 'Score';
+      fetch(`../../model/setScores.php?scoreGame=${gameMode}&score=${bestScoreNumber}`)
+      .catch(err => console.log(err))
+    }
+  }
+  else {
+    scoreNumber = 0;
+    scoreSpan.textContent = scoreNumber;
+  }
+}
+
+/**
+ * On reset tous les scores au changement de mode
+*/
+function resetAllScores() {
+  scoreNumber = 0;
+  bestScoreNumber = 0;
+  scoreSpan.textContent = scoreNumber;
+  bestScoreSpan.textContent = bestScoreNumber;
+}
+
+/**
+ * On fait apparaitre une nouvelle question après un setTimeout,
+ * On retire/ré-ajoute les classes nécessaires sur les boutons
+ * @param {Function} newQuestionFunc 
+ * @param {HTMLButtonElement} btn 
+ * @param {boolean} isGood
+*/
 function newQuestionAfterResponse(newQuestionFunc, btn, isGood) {
   setTimeout(() => {
     if(isGood) {
@@ -225,13 +286,17 @@ function toggleClassesOnRightBtn() {
   }
 }
 
-// On récupère un pays aléatoire
+/**
+ * Récupère un pays aléatoire
+*/
 function getRandomCountry() {
   const randomNumber = Math.floor(Math.random() * allCountries.length);
   return allCountries[randomNumber];
 }
 
-// On enlève l'ancienne question et on recrée une div pour en remettre une autre
+/**
+ * Enlève l'ancienne question et on recrée une div pour en remettre une autre
+*/
 function clearQuestionItem() {
   questionLoader.classList.add(activeClass);
   while(questionItem.lastElementChild !== questionLoader) {
@@ -240,14 +305,19 @@ function clearQuestionItem() {
   createQuestionDiv();
 }
 
-// On crée une div qui contiendra la question
+/**
+ * Crée une div qui contiendra la question
+*/
 function createQuestionDiv() {
   const newDiv = document.createElement('div');
   newDiv.classList.add('question');
   questionItem.appendChild(newDiv);
 }
 
-// Pour insérer la bonne réponse aléatoirement dans les réponses
+/**
+ * Insère la bonne réponse aléatoirement dans les réponses
+ * @returns {Array}
+*/
 function pushRandomIndex() {
   let randomIndex = Math.floor(Math.random() * answerArray.length);
   answerArray.splice(randomIndex, 0, goodCountry);
@@ -255,7 +325,9 @@ function pushRandomIndex() {
   return answerArray;
 }
 
-// Pour enlever le loader
+/**
+ * Enlève le loader
+*/
 function clearLoader() {
   setTimeout(() => {
     questionLoader.classList.remove(activeClass);

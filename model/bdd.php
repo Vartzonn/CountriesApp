@@ -1,7 +1,7 @@
 <?php
   $server = "localhost";
   $user = "root";
-  $db = "countriesapp2";
+  $db = "countriesapp";
   $password = "";
 
   try {
