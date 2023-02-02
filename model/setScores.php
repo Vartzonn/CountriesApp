@@ -10,7 +10,6 @@
     try {
       $sql = "UPDATE classement SET $scoreGame=$newScore WHERE pseudo='$userPseudo'";
       $conn->query($sql);
-      echo "success";
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
     }
