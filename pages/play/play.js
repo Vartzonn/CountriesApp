@@ -58,7 +58,7 @@ askFlag();
 
 /**
  * Question sur les drapeaux
- */ 
+*/ 
 function askFlag() {
   clearQuestionItem();
 
@@ -172,7 +172,6 @@ function generateAnswers() {
 }
 
 // Au clique des boutons réponses
-const seeResponseTimer = 300;
 answersBtn.forEach(btn => {
   btn.addEventListener('click', () => {
     // On disabled les boutons pour ne pas pouvoir répondre plusieurs fois d'affilé
@@ -246,6 +245,7 @@ function setScores(isGoodAnswer) {
  * @param {HTMLButtonElement} btn 
  * @param {boolean} isGood
 */
+const seeResponseTimer = 300;
 function newQuestionAfterResponse(newQuestionFunc, btn, isGood) {
   setTimeout(() => {
     if(isGood) {
@@ -265,7 +265,7 @@ function newQuestionAfterResponse(newQuestionFunc, btn, isGood) {
       button.removeAttribute('disabled');
     })
 
-  }, isGood ? seeResponseTimer : (seeResponseTimer + (800 - seeResponseTimer)))
+  }, isGood ? seeResponseTimer : (seeResponseTimer + 500))
 }
 
 function toggleClassesOnRightBtn() {
@@ -341,7 +341,7 @@ function getBestScore() {
   fetch(`../../model/getBestScore.php?gameMode=${getGameMode()}`)
   .then(res => res.text())
   .then(data => {
-    bestScoreNumber = data;
+    bestScoreNumber = parseInt(data);
     bestScoreSpan.textContent = data;
   })
   .catch(err => console.error("GetBestScore error " + err))

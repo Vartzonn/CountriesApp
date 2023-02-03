@@ -82,7 +82,7 @@
             <?php 
               if(isset($_GET['err'])) {
                 if($_GET['err'] == 2) {
-                  echo '<div class="form-text ps-2 text-danger">Ce pseudo existe déjà.</div>';
+                  echo '<div class="form-text ps-2 text-danger card-back-error">Ce pseudo existe déjà.</div>';
                 }
               }
             ?>
@@ -102,7 +102,7 @@
             <?php 
               if(isset($_GET['err'])) {
                 if($_GET['err'] == 1) {
-                  echo '<div class="form-text ps-2 text-danger">Ce mail existe déjà.</div>';
+                  echo '<div class="form-text ps-2 text-danger card-back-error">Ce mail existe déjà.</div>';
                 }
               }
             ?>
@@ -126,7 +126,7 @@
           <?php 
             if(isset($_GET['err'])) {
               if($_GET['err'] == 500) {
-                echo '<div class="form-text ps-2 text-danger">Une erreur est survenue. Veuillez réessayer.</div>';
+                echo '<div class="form-text ps-2 text-danger card-back-error">Une erreur est survenue. Veuillez réessayer.</div>';
               }
             }
           ?>

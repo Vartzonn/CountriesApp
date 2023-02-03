@@ -8,15 +8,16 @@
   if(!$isNoHeaderPage) {
     if(str_contains($fileName, '/ProjetSolo/pages')) {
       require "../../model/functions.php";
+      require_once "../../model/getIsAdmin.php";
       include "../../include/loader.php";
     }
     else {
       require "./model/functions.php";
+      require_once "./model/getIsAdmin.php";
       include "./include/loader.php";
     }
     logged_only();
   }
-  
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +60,9 @@
         <a href="<?=$path?>/pages/play/play.php">Jouer</a>
         <a href="<?=$path?>/pages/revise/revise.php">Réviser</a>
         <a href="<?=$path?>/pages/ranking/ranking.php">Classement</a>
+        <?php if ($isAdmin) { ?>
+          <a href="<?= $path ?>/pages/admin/admin.php">Admin</a>
+        <?php }?>
         <a href=<?= "$path/model/logout.php" ?> class="btn btn-danger logout-btn">
           <i class="fa-solid fa-power-off"></i>
         </a>

@@ -6,7 +6,7 @@
 
     $vermail = $_POST['signup-mail'];
     $mailcheck = $conn->query("SELECT * FROM user WHERE mail = '$vermail'")->fetch();
-    if ($mailcheck && 0 ===1) {
+    if ($mailcheck) {
       header("Location:$loginPath?err=1");
     }
     else {

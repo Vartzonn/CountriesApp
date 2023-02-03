@@ -4,6 +4,16 @@ signUpBtn.addEventListener('click', () => rotateCard(false));
 const signInBtn = document.querySelector('.sign-in-btn');
 signInBtn.addEventListener('click', () => rotateCard(true));
 
+// Au chargement de la page, si il y a eu une erreur lors de l'inscription, on retourne la carte pour montrer l'erreur
+const cardBackError = document.querySelector('.card-back-error');
+if(cardBackError) {
+  rotateCard(false);
+}
+
+/**
+ * Retourne la carte
+ * @param {boolean} isReverse 
+*/
 function rotateCard(isReverse) {
   const loginForms = document.querySelector('.login-forms');
 

@@ -7,7 +7,6 @@
   }
 
   function logged_only() {
-    session_start();
     if(session_status() == PHP_SESSION_NONE || !isset($_SESSION['auth'])) {
       header("Location: /ProjetSolo/pages/login/login.php");
     }
