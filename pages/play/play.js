@@ -25,8 +25,11 @@ gameModes.forEach(mode => {
       // On récupère un pays aléatoire
       goodCountry = getRandomCountry();
 
-      // On resest les scores
-      resetAllScores();
+      // On remet le score à 0
+      setScores(false);
+
+      // On récupère le meilleur score du mode de jeu choisi afin de l'afficher
+      getBestScore();
       
       // On change la question selon le mode choisi
       const questionTitle = document.querySelector('.question-title');
@@ -226,9 +229,7 @@ function setScores(isGoodAnswer) {
       bestScoreSpan.textContent = bestScoreNumber;
 
       // Ajout du nouveau meilleur score dans la bdd
-      const currentMode = document.querySelector('.active-mode').id;
-      const gameMode = currentMode + 'Score';
-      fetch(`../../model/setScores.php?scoreGame=${gameMode}&score=${bestScoreNumber}`)
+      fetch(`../../model/setScores.php?gameMode=${getGameMode()}&score=${bestScoreNumber}`)
       .catch(err => console.log(err))
     }
   }
@@ -236,16 +237,6 @@ function setScores(isGoodAnswer) {
     scoreNumber = 0;
     scoreSpan.textContent = scoreNumber;
   }
-}
-
-/**
- * On reset tous les scores au changement de mode
-*/
-function resetAllScores() {
-  scoreNumber = 0;
-  bestScoreNumber = 0;
-  scoreSpan.textContent = scoreNumber;
-  bestScoreSpan.textContent = bestScoreNumber;
 }
 
 /**
@@ -333,3 +324,26 @@ function clearLoader() {
     questionLoader.classList.remove(activeClass);
   }, 50)
 }
+
+/**
+ * Récupère l'info du mode de jeu puis ajoute "Score" à ce dernier
+ * Cela sert pour les appels à la base de donnée 
+*/
+function getGameMode() {
+  const currentMode = document.querySelector('.active-mode').id;
+  return currentMode + 'Score';
+}
+
+/**
+ * Récupère depuis la bdd le meilleur score du joueur dans le mode de jeu choisi
+*/
+function getBestScore() {
+  fetch(`../../model/getBestScore.php?gameMode=${getGameMode()}`)
+  .then(res => res.text())
+  .then(data => {
+    bestScoreNumber = data;
+    bestScoreSpan.textContent = data;
+  })
+  .catch(err => console.error("GetBestScore error " + err))
+}
+getBestScore();

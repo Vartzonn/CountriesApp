@@ -1,19 +1,17 @@
-<?php
+<?php 
   require_once "./bdd.php";
   session_start();
   $userPseudo = $_SESSION['auth'];
 
-  if(isset($_GET['gameMode']) && $_GET['score']) {
+  if(isset($_GET['gameMode'])) {
     $gameMode = $_GET['gameMode'];
-    $newScore = $_GET['score'];
 
     try {
-      $sql = "UPDATE classement SET $gameMode=$newScore WHERE pseudo='$userPseudo'";
-      $conn->query($sql);
+      $sql = "SELECT $gameMode FROM classement WHERE pseudo='$userPseudo'";
+      $bestScore = $conn->query($sql)->fetch();
+      echo $bestScore[$gameMode];
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
     }
   }
-
-  $conn = null;
 ?>

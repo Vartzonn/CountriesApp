@@ -1,6 +1,12 @@
 Page jouer :
+	Responsive ?
 	Score : -style
-					-récup meilleur score au chargement du jeu
+
+Page login :
+	Si erreur au dos de la carte, tourner la carte au chargement de la page
+
+Création BDD :
+	Valeur "false" par défaut à "isAdmin"
 
 Page classement :
 	Tout
