@@ -3,12 +3,14 @@
 @import './include/header';
 @import './include/footer';
 @import './include/loader';
+@import './include/gameModes';
 
 // PAGES
 @import './include/pages/index';
 @import './include/pages/login';
 @import './include/pages/play';
 @import './include/pages/revise';
+@import './include/pages/ranking';
 @import './include/pages/admin';
 
 

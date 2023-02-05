@@ -1,12 +1,8 @@
 Page jouer :
-	Responsive ?
 	Score : -style
 
-Création BDD :
-	Valeur "false" par défaut à "isAdmin"
-
 Page classement :
-	Tout
+	Responsive mobile (surtout quand un <td> est trop long)
 
 Page admin :
 	Tout : -CRUD

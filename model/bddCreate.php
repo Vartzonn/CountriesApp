@@ -27,7 +27,7 @@
           pseudo VARCHAR(20) NOT NULL,
           mail VARCHAR(100) NOT NULL,
           password VARCHAR(256) NOT NULL,
-          isAdmin VARCHAR(5)
+          isAdmin TINYINT(1) DEFAULT '0'
           )";
       $conn->exec($sql);
     } catch (PDOException $e) {

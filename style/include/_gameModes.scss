@@ -1,0 +1,40 @@
+
+// Style commun entre la page "Jouer" et "Classement"
+.game-mode-container {
+  height: 45px;
+  @include flex();
+
+  .game-mode {
+    height: 100%;
+    width: 33.33%;
+    @include flex();
+    font-size: 20px;
+
+    p {
+      margin: 0;
+    }
+
+    &.active-mode {
+      background-color: #99B4FF;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid black;
+    }
+  }
+
+  @include responsive($sm) {
+    height: auto;
+    flex-direction: column;
+
+    .game-mode {
+      width: 100%;
+      height: 40px;
+
+      &:not(:last-child) {
+        border-right: 0;
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+}

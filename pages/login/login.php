@@ -1,4 +1,6 @@
 <?php
+  include '../../model/bddCreate.php';
+  
   include '../../include/header.php'; 
 
   require '../../model/variables.php';
