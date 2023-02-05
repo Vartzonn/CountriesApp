@@ -24,6 +24,11 @@ header {
         color: black;
       }
     }
+
+    .logout-btn {
+      height: 40px;
+      @include flex;
+    }
   }
 }
 

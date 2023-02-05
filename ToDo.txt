@@ -1,11 +1,10 @@
 Page jouer :
 	Score : -style
 
-Page classement :
-	Responsive mobile (surtout quand un <td> est trop long)
-
 Page admin :
 	Tout : -CRUD
+
+Responsive du header quand admin
 
 Maquette du site 
 Dossier sur le site
