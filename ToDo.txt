@@ -2,7 +2,10 @@ Page jouer :
 	Score : -style
 
 Page admin :
-	Tout : -CRUD
+	-Create
+	-Update
+	-Popup de confirmation pour supprimer un user
+	-Message quand delete un user
 
 Responsive du header quand admin
 

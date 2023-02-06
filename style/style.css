@@ -587,6 +587,46 @@ footer nav a:not(.no-underline):hover {
   text-overflow: ellipsis;
 }
 
+.admin-container .admin-table {
+  padding: 20px 0 40px 0;
+  text-align: center;
+}
+.admin-container .admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2em;
+}
+.admin-container .admin-table table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.admin-container .admin-table table tr.current-user-row {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+.admin-container .admin-table table th {
+  background-color: #ddd;
+  padding: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+.admin-container .admin-table table th:not(:last-child) {
+  border-right: 1px solid rgba(154, 154, 154, 0.369);
+}
+.admin-container .admin-table table td {
+  border: 1px solid rgba(154, 154, 154, 0.369);
+  padding: 10px;
+  text-align: center;
+  max-width: 32vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-container .admin-table table td .btn {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
 *,
 ::before,
 ::after {

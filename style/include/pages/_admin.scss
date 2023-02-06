@@ -1,0 +1,50 @@
+.admin-container {
+  .admin-table {
+    padding: 20px 0 40px 0;
+    text-align: center;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.2em;
+
+      tr {
+        &:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+
+        &.current-user-row {
+          background-color: #00ff0033;
+        }
+      }
+    
+      th {
+        background-color: #ddd;
+        padding: 10px;
+        text-align: center;
+        white-space: nowrap;
+
+        &:not(:last-child) {
+          border-right: 1px solid $border-color;
+        }
+      }
+    
+      td {
+        border: 1px solid $border-color;
+        padding: 10px;
+        text-align: center;
+        max-width: 32vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .btn {
+          width: 30px;
+          height: 30px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
