@@ -139,16 +139,19 @@ window.addEventListener('scroll', () => {
   checkScrollTop();
 })
 scrollTopBtn.addEventListener('click', () => {
-  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   setTimeout(() => {
     scrollTopBtn.style.display = 'none';
   }, 750)
 })
 
-// Fonction pour faire apparaitre le bouton si on a assez scroll
+// Fonction pour faire apparaitre le bouton pour retourner en haut de la page si on a assez scroll
 function checkScrollTop() {
-  if(document.documentElement.scrollTop > 50) {
+  if(document.body.scrollTop > 50) {
     scrollTopBtn.style.display = 'block';
+  }
+  else {
+    scrollTopBtn.style.display = 'none';
   }
 }
 checkScrollTop();

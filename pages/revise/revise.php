@@ -24,7 +24,7 @@
 
 <!-- Bouton pour retourner en haut de la page -->
 <button class="btn btn-primary goToTop">
-<i class="fa-solid fa-arrow-up"></i>
+  <i class="fa-solid fa-arrow-up"></i>
 </button>
 
 <script type="module">
