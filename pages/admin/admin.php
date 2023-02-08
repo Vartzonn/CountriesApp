@@ -16,10 +16,10 @@
           <th>Id</th>
           <th>Pseudo</th>
           <th>Mail</th>
+          <th>Admin</th>
           <th>Score - Drapeaux</th>
           <th>Score - Pays</th>
           <th>Score - Capitale</th>
-          <th>Admin</th>
           <th>Edit</th>
         </tr>
       </thead>
@@ -27,7 +27,8 @@
     </table>
   </div>
 </div>
-  
+
+
 
 <?php 
   include '../../include/footer.php';

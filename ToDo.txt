@@ -4,8 +4,9 @@ Page jouer :
 Page admin :
 	-Create
 	-Update
-	-Popup de confirmation pour supprimer un user
-	-Message quand delete un user
+	-Delete :
+		*Popup de confirmation pour supprimer un user
+		*Message de confirmation du delete d'un user
 
 Responsive du header quand admin
 
