@@ -6,7 +6,7 @@
     $pseudo = $_POST['pseudo'];
 
     try {
-      $sql = "DELETE FROM `user` WHERE pseudo='$pseudo'";
+      $sql = "DELETE FROM user WHERE pseudo='$pseudo'";
       $conn->query($sql);
       $sql = "DELETE FROM classement WHERE pseudo='$pseudo'";
       $conn->query($sql);

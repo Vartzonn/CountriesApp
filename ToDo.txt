@@ -2,11 +2,16 @@ Page jouer :
 	Score : -style
 
 Page admin :
-	-Create
-	-Update
-	-Delete :
-		*Popup de confirmation pour supprimer un user
-		*Message de confirmation du delete d'un user
+	-Responsive
+	-Create :
+		*Bouton pour créer
+		*Formulaire qui s'affiche
+		*Envoyer le formulaire
+	-Update :
+	 	*Bug quand on essayer d'en modifier plusieurs
+		*Vérifier si le nouveau pseudo/mail n'existe pas déjà => message d'erreur si c'est pas bon
+		*Message de confirmation de la modif d'un user
+		*Message d'erreur
 
 Responsive du header quand admin
 
