@@ -1,6 +1,12 @@
+// Toast
+const alertToast = document.getElementById('alertToast');
+const toastBody = document.querySelector('.toast-body');
+
 const tbody = document.querySelector(".usersBody");
-let isEditing = false;
 let targetedDeletePseudo = '';
+
+const addUserBtn = document.querySelector('.addUserBtn');
+
 const confirmDeleteUserBtn = document.querySelector('.confirm-delete-user');
 confirmDeleteUserBtn.addEventListener('click', () => {
   deleteUser();
@@ -12,7 +18,9 @@ function getUsers() {
   .then(datas => {
     fillAdminTable(datas);
   })
-  .catch(err => console.log('Erreur getUsers: ' + err))
+  .catch(() => {
+    toggleToast(true, 'Une erreur est survenue lors de la récupération des utilisateurs.')
+  })
 }
 getUsers();
 
@@ -122,16 +130,12 @@ function addBtnEventListener() {
  * 
  * @param {HTMLTableRowElement} trSelected => élément tr parent du bouton sur lequel on a cliqué
  * @param {boolean} isCancel => indique si on a cliqué sur la croix pour cancel l'edit
- * 
- * FIXME:
- *  -Au moment de la confirmation d'edit, envoi dans la BDD
 */
 function editUser(trSelected, isCancel) {
   const trChildren = trSelected.children;
+  const alreadyEditingRow = trSelected.querySelector("input[type='text']");
 
-  if(!isEditing) {
-    isEditing = true;
-
+  if(!alreadyEditingRow) {
     for(let i = 0; i < trChildren.length; i++) {
       const td = trChildren[i];
       const oldValue = td.textContent;
@@ -141,8 +145,10 @@ function editUser(trSelected, isCancel) {
         case 7:
           break;
         case 1:
+          td.innerHTML = `<input type="text" class="w-50 form-control d-inline-block" onchange="checkInputValue(this, 2)" oldValue="${oldValue}" value="${oldValue}" />`;
+          break;
         case 2:
-          td.innerHTML = `<input type="text" class="w-50 form-control d-inline-block" oldValue="${oldValue}" value="${oldValue}" />`;
+          td.innerHTML = `<input type="text" class="w-50 form-control d-inline-block" onchange="checkInputValue(this, 3)" oldValue="${oldValue}" value="${oldValue}" />`;
           break;
         case 3:
           const adminCheckbox = td.firstElementChild;
@@ -161,8 +167,6 @@ function editUser(trSelected, isCancel) {
     }
   }
   else {
-    isEditing = false;
-
     // Si ce n'est pas le cancel, on envoie les données à la BDD
     if(!isCancel) {
       const data = {
@@ -182,20 +186,75 @@ function editUser(trSelected, isCancel) {
       .then(res => res.text())
       .then(res => {
         if(res == '1') {
-          console.log("Success edit user");
+          toggleToast(false, "L'utilisateur a bien été modifié !");
           removeInputsFromTd(trChildren, false);
         }
-        else {
-          console.log(res);
-        }
       })
-      .catch(err => {
-        console.log("Erreur dans l'update du user: " + err);
+      .catch(() => {
+        toggleToast(true, "Une erreur est survenue.");
       })
     }
     else {
       removeInputsFromTd(trChildren, true);
     }
+  }
+}
+
+/**
+ * Au moment de l'edit, à chaque changement de l'input, on regarde si le pseudo ou le mail n'est pas déjà utilisé
+ * @param {HTMLInputElement} input
+ * @param {number} columnNumber
+*/
+function checkInputValue(input, columnNumber) {
+  const columnToCheck = document.querySelectorAll(`table td:nth-child(${columnNumber})`);
+  const inputValue = input.value;
+  const parentTd = input.parentElement;
+  let errorMsg = '';
+
+  const actionBtnsArr = ['confirm-edit-user-btn', 'cancel-edit-user-btn'];
+  const toggleBtnDisability = (isDisabled) => {
+    actionBtnsArr.forEach(btnClass => {
+      const btn = parentTd.parentElement.querySelector(`.${btnClass}`);
+      btn.disabled = isDisabled;
+    })
+  }
+
+  if(inputValue !== '') {
+    if(columnNumber === 3 && !inputValue.includes('@')) {
+      errorMsg = "L'email doit contenir un @";
+    }
+    else {
+      columnToCheck.forEach(td => {
+        if(errorMsg === '') {
+          if(td !== parentTd) {
+            if(td.textContent === inputValue) {
+              if(columnNumber === 2) {
+                errorMsg = 'Un utilisateur a déjà ce pseudo.';
+              }
+              else {
+                errorMsg = 'Un utilisateur a déjà ce mail.';
+              }
+            }
+            else {
+              errorMsg = '';
+            }
+          }
+        }
+      })
+    }
+  }
+  else {
+    errorMsg = 'La case ne peut pas être vide.';
+  }
+
+  if(!!errorMsg) {
+    input.classList.add('border', 'border-danger');
+    toggleBtnDisability(true);
+    toggleToast(true, errorMsg);
+  }
+  else {
+    input.classList.remove('border', 'border-danger');
+    toggleBtnDisability(false);
   }
 }
 
@@ -260,8 +319,6 @@ function removeInputsFromTd(trChildren, isCancel) {
 /**
  * Permet de supprimer un user de la base de donnée
 */
-const deleteUserToast = document.getElementById('deleteUserToast');
-const toastMsg = document.querySelector('.toast-body');
 function deleteUser() {
   const data = {
     pseudo: targetedDeletePseudo
@@ -280,14 +337,12 @@ function deleteUser() {
       tbody.removeChild(trRemoved);
       
       // Affiche le popup pour indiquer que la suppression dans la base s'est bien faite
-      toggleToast(false);
+      toggleToast(false, "L'utilisateur a bien été supprimé !");
     }
   })
-  .catch(err => {
-    console.log('Erreur deleteUser: ' + err);
-
+  .catch(() => {
     // Affiche le popup pour indiquer qu'une erreur est survenue
-    toggleToast(true);
+    toggleToast(true, "Une erreur est survenue.");
   })
 }
 
@@ -295,24 +350,26 @@ function deleteUser() {
  * Change le background du toast et son message
  * => En rouge si il y a eu une erreur
  * => En bleu sinon
+ * @param {boolean} isError
+ * @param {string} toastMsg
 */
-function toggleToast(isError) {
-  const toast = new bootstrap.Toast(deleteUserToast);
+function toggleToast(isError, toastMsg) {
+  const toast = new bootstrap.Toast(alertToast);
   const successClass = 'text-bg-primary';
   const errorClass = 'text-bg-danger';
 
   if(isError) {
-    if(deleteUserToast.classList.contains(successClass)) {
-      deleteUserToast.classList.replace(successClass, errorClass);
-      toastMsg.textContent = 'Une erreur est survenue.';
+    if(alertToast.classList.contains(successClass)) {
+      alertToast.classList.replace(successClass, errorClass);
     }
   }
   else {
-    if(deleteUserToast.classList.contains(errorClass)) {
-      deleteUserToast.classList.replace(errorClass, successClass);
-      toastMsg.textContent = "L'utilisateur a bien été supprimé !";
+    if(alertToast.classList.contains(errorClass)) {
+      alertToast.classList.replace(errorClass, successClass);
     }
   }
+
+  toastBody.textContent = toastMsg;
 
   // Affiche le toast
   toast.show();

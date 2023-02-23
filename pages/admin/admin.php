@@ -9,6 +9,8 @@
 ?>
 
 <div class="admin-container">
+  <button id="addUserBtn" class="btn btn-success mt-2 ms-2">Ajouter un utilisateur</button>
+
   <div class="admin-table">
     <table id="users">
       <thead>
@@ -47,7 +49,7 @@
   </div>
 
   <!-- Bootstrap Toast Delete User -->
-  <div id="deleteUserToast" class="toast align-items-center text-bg-primary position-fixed border-0 mb-5 me-2 bottom-0 end-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div id="alertToast" class="toast align-items-center text-bg-primary position-fixed border-0 mb-5 me-2 bottom-0 end-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">
         L'utilisateur a bien été supprimé !
