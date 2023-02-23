@@ -9,7 +9,46 @@
 ?>
 
 <div class="admin-container">
-  <button id="addUserBtn" class="btn btn-success mt-2 ms-2">Ajouter un utilisateur</button>
+  <button id="addUserBtn" class="btn btn-success mt-2 ms-2" data-bs-toggle="modal" data-bs-target="#addUserModal">
+    Ajouter un utilisateur
+  </button>
+
+  <!-- Bootstrap Modal Add User -->
+  <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addUserModalLabel">Ajouter un utilisateur</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="#">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Pseudo</span>
+              <input type="text" class="form-control" name="pseudo" />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Mot de passe</span>
+              <input type="text" class="form-control" name="password" />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Adresse mail</span>
+              <input type="text" class="form-control" name="mail" />
+            </div>
+
+            <div>
+              <input type="checkbox" class="btn-check" name="admin" id="admin" autocomplete="off">
+              <label class="btn btn-outline-primary" for="admin">Administrateur</label><br>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer mt-1">
+          <button type="button" class="btn btn-success confirm-add-user" data-bs-dismiss="modal">Confirmer</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="admin-table">
     <table id="users">

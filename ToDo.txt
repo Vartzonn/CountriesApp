@@ -4,10 +4,11 @@ Page jouer :
 Page admin :
 	-Responsive
 	-Create :
-		*Formulaire qui s'affiche (form avec : pseudo, password, mail, isAdmin)
+		*Disable le bouton confirmer s'il n'y a pas toutes les infos
+		*Vérification des données (si il y a un @ dans le mail, si le mdp est bon etc...)
 		*Vérification si pseudo ou mail existe pas déjà => message d'erreur si oui
 		*Envoyer le formulaire
-		*Message de confirmation/erreur
+		*Crypter le mdp
 
 Responsive du header quand admin
 

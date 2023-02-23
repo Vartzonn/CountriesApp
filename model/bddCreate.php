@@ -42,9 +42,9 @@
       $sql = "CREATE TABLE classement (
           id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
           pseudo VARCHAR(20) NOT NULL,
-          flagScore INT(6) NOT NULL,
-          countryScore INT(6) NOT NULL,
-          capitalScore INT(6) NOT NULL
+          flagScore INT(6) DEFAULT '0',
+          countryScore INT(6) DEFAULT '0',
+          capitalScore INT(6) DEFAULT '0'
           )";
       $conn->exec($sql);
     } catch (PDOException $e) {

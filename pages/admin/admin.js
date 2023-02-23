@@ -5,7 +5,29 @@ const toastBody = document.querySelector('.toast-body');
 const tbody = document.querySelector(".usersBody");
 let targetedDeletePseudo = '';
 
-const addUserBtn = document.querySelector('.addUserBtn');
+const confirmAddUser = document.querySelector('.confirm-add-user');
+confirmAddUser.addEventListener('click', () => {
+  const data = {
+    pseudo: 'Nulle',
+    password: 'Nuller12?',
+    mail: 'nul@nul.com',
+    isAdmin: false
+  }
+
+  fetch(`../../model/addUser.php`, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  })
+  .then(res => res.text())
+  .then(res => {
+    if(res == '1') {
+      toggleToast(false, "L'utilisateur a bien été ajouté !");
+    }
+  })
+  .catch(() => {
+    toggleToast(true, "Une erreur est survenue.");
+  })
+})
 
 const confirmDeleteUserBtn = document.querySelector('.confirm-delete-user');
 confirmDeleteUserBtn.addEventListener('click', () => {
