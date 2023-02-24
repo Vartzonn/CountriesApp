@@ -29,7 +29,7 @@
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text">Mot de passe</span>
-              <input type="text" class="form-control" name="password" />
+              <input type="password" class="form-control" name="password" />
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text">Adresse mail</span>
@@ -43,7 +43,7 @@
           </form>
         </div>
         <div class="modal-footer mt-1">
-          <button type="button" class="btn btn-success confirm-add-user" data-bs-dismiss="modal">Confirmer</button>
+          <button type="button" class="btn btn-success confirm-add-user" disabled data-bs-dismiss="modal">Confirmer</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
         </div>
       </div>

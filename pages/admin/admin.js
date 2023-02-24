@@ -29,6 +29,21 @@ confirmAddUser.addEventListener('click', () => {
   })
 })
 
+const addUserModal = document.querySelector('#addUserModal');
+const addUserInputs = document.querySelectorAll('input.form-control');
+addUserInputs.forEach(input => {
+  input.addEventListener('input', () => {
+    let hasInvalidValue = false;
+    for(let i = 0; i < addUserInputs.length; i++) {
+      if(addUserInputs[i].value === '') {
+        hasInvalidValue = true;
+      }
+    }
+
+    confirmAddUser.disabled = hasInvalidValue;
+  })
+})
+
 const confirmDeleteUserBtn = document.querySelector('.confirm-delete-user');
 confirmDeleteUserBtn.addEventListener('click', () => {
   deleteUser();
