@@ -17,7 +17,9 @@
     }
 
     try {
-      $sql = "INSERT INTO user (pseudo, password, mail, isAdmin) VALUES ('$pseudo', '$password', '$mail', $isAdmin)";
+      $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+      $sql = "INSERT INTO user (pseudo, password, mail, isAdmin) VALUES ('$pseudo', '$hashedPassword', '$mail', $isAdmin)";
       $conn->query($sql);
       $sql = "INSERT INTO classement (pseudo) VALUES ('$pseudo')";
       $conn->query($sql);

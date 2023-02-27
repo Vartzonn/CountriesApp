@@ -22,7 +22,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="#">
+          <form action="#" id="addUserForm">
             <div class="input-group mb-3">
               <span class="input-group-text">Pseudo</span>
               <input type="text" class="form-control" name="pseudo" />
@@ -37,10 +37,11 @@
             </div>
 
             <div>
-              <input type="checkbox" class="btn-check" name="admin" id="admin" autocomplete="off">
+              <input type="checkbox" class="btn-check" name="admin" id="admin">
               <label class="btn btn-outline-primary" for="admin">Administrateur</label><br>
             </div>
           </form>
+          <span id="addUserErrorSpan" class="d-none text-danger">Ce pseudo existe déjà !</span>
         </div>
         <div class="modal-footer mt-1">
           <button type="button" class="btn btn-success confirm-add-user" disabled data-bs-dismiss="modal">Confirmer</button>

@@ -4,15 +4,19 @@ const toastBody = document.querySelector('.toast-body');
 
 const tbody = document.querySelector(".usersBody");
 let targetedDeletePseudo = '';
-
 const confirmAddUser = document.querySelector('.confirm-add-user');
 confirmAddUser.addEventListener('click', () => {
+  const addUserForm = document.querySelector('#addUserForm');
+
   const data = {
-    pseudo: 'Nulle',
-    password: 'Nuller12?',
-    mail: 'nul@nul.com',
-    isAdmin: false
+    pseudo: addUserForm.pseudo.value,
+    password: addUserForm.password.value,
+    mail: addUserForm.mail.value,
+    isAdmin: addUserForm.admin.checked,
   }
+
+  addUserForm.reset();
+  confirmAddUser.disabled = true;
 
   fetch(`../../model/addUser.php`, {
     method: 'POST',
@@ -31,16 +35,57 @@ confirmAddUser.addEventListener('click', () => {
 
 const addUserModal = document.querySelector('#addUserModal');
 const addUserInputs = document.querySelectorAll('input.form-control');
+const addUserErrorSpan = document.querySelector('#addUserErrorSpan');
+const patterns = {
+  pseudo: /^[a-zA-Z0-9]{3,20}$/,
+  password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+  mail: /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/
+}
 addUserInputs.forEach(input => {
   input.addEventListener('input', () => {
     let hasInvalidValue = false;
-    for(let i = 0; i < addUserInputs.length; i++) {
-      if(addUserInputs[i].value === '') {
-        hasInvalidValue = true;
+    if(!input.value.match(patterns[input.name])) {
+      hasInvalidValue = true;
+    }
+    else {
+      for(let i = 0; i < addUserInputs.length; i++) {
+        if(addUserInputs[i].value === '') {
+          hasInvalidValue = true;
+        }
       }
     }
 
     confirmAddUser.disabled = hasInvalidValue;
+  })
+
+  // On vérifie si il n'existe pas déjà ce pseudo/mail
+  input.addEventListener('change', () => {
+    let hasInvalidValue = false;
+    let columnToCheck = 0;
+    if(input.name === 'pseudo') {
+      columnToCheck = 2;
+    }
+    else if(input.name === 'mail') {
+      columnToCheck = 3;
+    }
+
+    if(!!columnToCheck) {
+      const column = tbody.querySelectorAll(`td:nth-child(${columnToCheck})`);
+      column.forEach(td => {
+        if(td.textContent === input.value) {
+          hasInvalidValue = true;
+        }
+      })
+    
+      if(hasInvalidValue) {
+        addUserErrorSpan.textContent = `Ce ${input.name} existe déjà !`
+        addUserErrorSpan.classList.remove('d-none');
+        confirmAddUser.disabled = true;
+      }
+      else {
+        addUserErrorSpan.classList.add('d-none');
+      }
+    }
   })
 })
 

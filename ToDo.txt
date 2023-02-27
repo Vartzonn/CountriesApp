@@ -3,14 +3,7 @@ Page jouer :
 
 Page admin :
 	-Responsive
-	-Create :
-		*Vérification des données (si il y a un @ dans le mail, si le mdp est bon etc...)
-		*Vérification si pseudo ou mail existe pas déjà => message d'erreur si oui
-		*Envoyer le formulaire
-		*Crypter le mdp
 
 Responsive du header quand admin
 
-Maquette du site 
-Dossier sur le site
-Cahier des charges ?
+Maquette du site
