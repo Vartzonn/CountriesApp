@@ -4,6 +4,7 @@ Page jouer :
 Page admin :
 	-Responsive
 
+Page Admin => regex sur les inputs
 Responsive du header quand admin
 
 Maquette du site

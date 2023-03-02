@@ -11,7 +11,7 @@
     }
     else {
       require_once './functions.php';
-      require_once './variables.php';
+      require_once './regexVariables.php';
 
       if (!empty($_POST['signup-pseudo']) && !empty($_POST['signup-mail'])) {
         $mail = cleandata($_POST['signup-mail']);

@@ -1,6 +1,6 @@
 <?php
   require './functions.php';
-  require './variables.php';
+  require './regexVariables.php';
   $loginPath = '../pages/login/login.php';
 
   if(!empty($_POST['pseudo'])) {
