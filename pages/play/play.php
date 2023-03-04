@@ -8,7 +8,7 @@
   <!-- SCORE -->
   <div class="score-container position-absolute">
     <p class="mb-1">Score: <span class="score">0</span></p>
-    <p class="mb-1">Meilleur score: <span class="best-score">0</span></p>
+    <p class="mb-1">Meill. score: <span class="best-score">0</span></p>
   </div>
 
   <!-- JEU -->

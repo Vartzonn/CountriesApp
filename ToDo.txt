@@ -1,4 +1,5 @@
 Page jouer :
 	Score : -style
 
-Maquette du site
+Ajouter score sur maquette finale
+Faire 1ère maquette

@@ -366,6 +366,22 @@ footer nav a:not(.no-underline):hover {
   }
 }
 
+.play-container {
+  height: 100%;
+  margin-bottom: 20px;
+}
+.play-container .score-container {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+.play-container .score-container p {
+  font-size: 25px;
+}
+@media screen and (max-width: 992px) {
+  .play-container .score-container p {
+    font-size: 20px;
+  }
+}
 .play-container .game-container {
   height: 100%;
   display: flex;

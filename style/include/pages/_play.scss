@@ -1,4 +1,20 @@
 .play-container {
+  height: 100%;
+  margin-bottom: 20px;
+
+  .score-container {
+    padding-top: 10px;
+    padding-left: 20px;
+
+    p {
+      font-size: 25px;
+
+      @include responsive($lg) {
+        font-size: 20px;
+      }
+    }
+  }
+
   .game-container {
     height: 100%;
 
