@@ -1,6 +1,4 @@
 Page jouer :
 	Score : -style
 
-Page Admin => regex sur les inputs
-
 Maquette du site

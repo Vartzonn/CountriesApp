@@ -4,7 +4,9 @@
   $userPseudo = $_SESSION['auth'];
 
   if(isset($_GET['gameMode'])) {
-    $gameMode = $_GET['gameMode'];
+    require_once './functions.php';
+
+    $gameMode = cleandata($_GET['gameMode']);
 
     try {
       $sql = "SELECT $gameMode FROM classement WHERE pseudo='$userPseudo'";

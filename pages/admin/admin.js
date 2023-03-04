@@ -27,6 +27,7 @@ confirmAddUser.addEventListener('click', () => {
   .then(res => {
     if(res == '1') {
       toggleToast(false, "L'utilisateur a bien été ajouté !");
+      getUsers();
     }
   })
   .catch(() => {
@@ -249,7 +250,7 @@ function editUser(trSelected, isCancel) {
         case 7:
           break;
         case 1:
-          td.innerHTML = `<input type="text" class="w-50 form-control d-inline-block" onchange="checkInputValue(this, 2)" oldValue="${oldValue}" value="${oldValue}" />`;
+          td.innerHTML = `<input type="text" minlength="3" maxlength="20" class="w-50 form-control d-inline-block" onchange="checkInputValue(this, 2)" oldValue="${oldValue}" value="${oldValue}" />`;
           break;
         case 2:
           td.innerHTML = `<input type="text" class="w-50 form-control d-inline-block" onchange="checkInputValue(this, 3)" oldValue="${oldValue}" value="${oldValue}" />`;
@@ -289,12 +290,17 @@ function editUser(trSelected, isCancel) {
       })
       .then(res => res.text())
       .then(res => {
+        console.log(res);
         if(res == '1') {
           toggleToast(false, "L'utilisateur a bien été modifié !");
           removeInputsFromTd(trChildren, false);
         }
+        else {
+          removeInputsFromTd(trChildren, false);
+          toggleToast(true, "Une erreur est survenue. La modification n'a pas été enregistrée.");
+        }
       })
-      .catch(() => {
+      .catch((err) => {
         toggleToast(true, "Une erreur est survenue.");
       })
     }

@@ -1,11 +1,13 @@
 <?php 
-  include '../../include/header.php';
+  require '../../include/header.php';
 
   // Si l'user n'est pas admin, on le redirige
   if(!$isAdmin) {
     $loginPath = '../login/login.php';
     header("Location:$loginPath");
   }
+
+  require '../../model/regexVariables.php';
 ?>
 
 <div class="admin-container">
@@ -25,15 +27,37 @@
           <form action="#" id="addUserForm">
             <div class="input-group mb-3">
               <span class="input-group-text">Pseudo</span>
-              <input type="text" class="form-control" name="pseudo" />
+              <input
+                type="text"
+                required
+                pattern=<?=$htmlPseudoPattern?>
+                minlength="3"
+                maxlength="20"
+                class="form-control"
+                name="pseudo"
+              />
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text">Mot de passe</span>
-              <input type="password" class="form-control" name="password" />
+              <input
+                type="password"
+                required
+                pattern=<?=$htmlPasswordPattern?>
+                minlength="6"
+                maxlength="24"
+                class="form-control"
+                name="password"
+              />
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text">Adresse mail</span>
-              <input type="text" class="form-control" name="mail" />
+              <input
+                type="text"
+                required
+                pattern=<?=$htmlMailPattern?>
+                class="form-control"
+                name="mail"
+              />
             </div>
 
             <div>

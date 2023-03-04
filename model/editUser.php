@@ -10,30 +10,47 @@
     isset($_POST['countryScore']) &&
     isset($_POST['capitalScore'])
   ) {
-    $oldPseudo = $_POST['oldPseudo'];
-    $pseudo = $_POST['pseudo'];
-    $mail = $_POST['mail'];
+    require_once './functions.php';
+    require_once './regexVariables.php';
+
+    $oldPseudo = cleanData($_POST['oldPseudo']);
+    $pseudo = cleanData($_POST['pseudo']);
+    $mail = cleanData($_POST['mail']);
     $isAdmin = $_POST['isAdmin'];
-    $flagScore = $_POST['flagScore'];
-    $countryScore = $_POST['countryScore'];
-    $capitalScore = $_POST['capitalScore'];
+    $flagScore = intval(cleanData($_POST['flagScore']));
+    $countryScore = intval(cleanData($_POST['countryScore']));
+    $capitalScore = intval(cleanData($_POST['capitalScore']));
 
-    if(!$isAdmin) {
-      $isAdmin = 0;
+    if(
+      preg_match($pseudoPattern, $oldPseudo) &&
+      preg_match($pseudoPattern, $pseudo) &&
+      preg_match($mailPattern, $mail) &&
+      filter_var($mail, FILTER_VALIDATE_EMAIL) &&
+      filter_var($isAdmin, FILTER_VALIDATE_BOOLEAN) &&
+      (filter_var($flagScore, FILTER_VALIDATE_INT) !== false) &&
+      (filter_var($flagScore, FILTER_VALIDATE_INT) !== false) &&
+      (filter_var($flagScore, FILTER_VALIDATE_INT) !== false)
+    ) {
+      if(!$isAdmin) {
+        $isAdmin = 0;
+      }
+  
+      try {
+        $sql = "UPDATE user SET pseudo='$pseudo', mail='$mail', isAdmin='$isAdmin' WHERE pseudo='$oldPseudo'";
+        $conn->query($sql);
+        $sql = "UPDATE classement SET pseudo='$pseudo', flagScore='$flagScore', countryScore='$countryScore', capitalScore='$capitalScore' WHERE pseudo='$oldPseudo'";
+        $conn->query($sql);
+  
+        echo 1;
+      } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+      }
+      finally {
+        $conn = null;
+      }
     }
-
-    try {
-      $sql = "UPDATE user SET pseudo='$pseudo', mail='$mail', isAdmin='$isAdmin' WHERE pseudo='$oldPseudo'";
-      $conn->query($sql);
-      $sql = "UPDATE classement SET pseudo='$pseudo', flagScore='$flagScore', countryScore='$countryScore', capitalScore='$capitalScore' WHERE pseudo='$oldPseudo'";
-      $conn->query($sql);
-
-      echo 1;
-    } catch (PDOException $e) {
-      echo "Error: " . $e->getMessage();
-    }
-    finally {
-      $conn = null;
+    else {
+      echo "Données invalides.";
     }
   }
   else {

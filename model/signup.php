@@ -13,7 +13,11 @@
       require_once './functions.php';
       require_once './regexVariables.php';
 
-      if (!empty($_POST['signup-pseudo']) && !empty($_POST['signup-mail'])) {
+      if (
+        !empty($_POST['signup-pseudo']) &&
+        !empty($_POST['signup-mail']) &&
+        filter_var($_POST['signup-mail'], FILTER_VALIDATE_EMAIL)
+      ) {
         $mail = cleandata($_POST['signup-mail']);
         $pseudo = cleandata($_POST['signup-pseudo']);
         $pseudoCheck = $conn->query("SELECT * FROM user WHERE pseudo = '$pseudo'")->fetch();

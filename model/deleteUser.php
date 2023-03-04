@@ -3,7 +3,8 @@
   $_POST = json_decode(file_get_contents('php://input'), true);
 
   if(isset($_POST['pseudo'])) {
-    $pseudo = $_POST['pseudo'];
+    require_once './functions.php';
+    $pseudo = cleandata($_POST['pseudo']);
 
     try {
       $sql = "DELETE FROM user WHERE pseudo='$pseudo'";
