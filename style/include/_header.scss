@@ -5,7 +5,7 @@ header {
   background-color: $header-bg;
   border-bottom: 4px solid black;
 
-  @include responsive($sm) {
+  @include responsive($md) {
     height: auto;
     padding: 0 0 .5rem 0;
     flex-direction: column;
@@ -22,6 +22,10 @@ header {
 
       &:hover {
         color: black;
+      }
+
+      @include responsive($sm) {
+        font-size: 16px;
       }
     }
 

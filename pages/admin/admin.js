@@ -3,6 +3,7 @@ const alertToast = document.getElementById('alertToast');
 const toastBody = document.querySelector('.toast-body');
 
 const tbody = document.querySelector(".usersBody");
+const thead = document.querySelector(".usersHead");
 let targetedDeletePseudo = '';
 const confirmAddUser = document.querySelector('.confirm-add-user');
 confirmAddUser.addEventListener('click', () => {
@@ -109,7 +110,27 @@ getUsers();
 /**
  * Rempli le tableau d'admin avec les données
 */
+const adminTableTitles = {
+  id: 'Id',
+  pseudo: 'Pseudo',
+  mail: 'Mail',
+  isAdmin: 'Admin',
+  flagScore: 'Score - Drapeaux',
+  countryScore: 'Score - Pays',
+  capitalScore: 'Score - Capitale',
+  edit: 'Edit'
+}
 function fillAdminTable(datas) {
+  if(thead.childElementCount === 0) {
+    const headRow = document.createElement('tr');
+    for (let title in adminTableTitles) {
+      const titleTh = document.createElement('th');
+      titleTh.textContent = adminTableTitles[title];
+      headRow.appendChild(titleTh);
+    }
+    thead.appendChild(headRow);
+  }
+
   // Vide le tableau de ces anciennes valeurs afin d'afficher les nouvelles
   while(tbody.lastChild) {
     tbody.removeChild(tbody.lastChild);
@@ -118,12 +139,12 @@ function fillAdminTable(datas) {
   // Affiche les nouvelles valeurs
   for(let i = 0; i < datas.length; i++) {
     const user = datas[i];
-
     const tr = document.createElement("tr");
 
     // On boucle sur l'objet pour ajouter toutes les cellules du tableau
     for (let property in user) {
       const newTd = document.createElement('td');
+      newTd.setAttribute('data-label', adminTableTitles[property]);
       if(property === 'isAdmin') {
         const checkBoxInput = document.createElement('input');
         checkBoxInput.classList.add('form-check-input', 'cs-pointer');
@@ -140,6 +161,7 @@ function fillAdminTable(datas) {
     }
 
     const editTd = document.createElement('td');
+    editTd.setAttribute('data-label', 'Edit');
     editTd.innerHTML = `
       <button class="btn btn-primary edit-user-btn" id=${user.pseudo}>
         <i class="fa-solid fa-pen"></i>

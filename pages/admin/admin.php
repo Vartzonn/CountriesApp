@@ -53,18 +53,7 @@
 
   <div class="admin-table">
     <table id="users">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Pseudo</th>
-          <th>Mail</th>
-          <th>Admin</th>
-          <th>Score - Drapeaux</th>
-          <th>Score - Pays</th>
-          <th>Score - Capitale</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
+      <thead class="usersHead"></thead>
       <tbody class="usersBody"></tbody>
     </table>
   </div>

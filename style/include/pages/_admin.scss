@@ -1,5 +1,6 @@
 .admin-container {
   .admin-table {
+    width: 100%;
     padding: 20px 0 40px 0;
     text-align: center;
 
@@ -30,6 +31,7 @@
       }
     
       td {
+        position: relative;
         border: 1px solid $border-color;
         padding: 10px;
         text-align: center;
@@ -43,6 +45,49 @@
           display: inline-flex;
           justify-content: center;
           align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $lg) {
+  .admin-container {
+    @include flex(column);
+
+    .admin-table {
+      @include flex();
+
+      table {
+        width: 95%;
+
+        thead {
+          display: none;
+        }
+
+        tr {
+          border-bottom: 3px solid #333;
+        }
+
+        td {
+          @include flex($justify: space-between);
+          max-width: none;
+          font-size: 1em;
+
+          &:last-child {
+            border-bottom: 0;
+          }
+
+          &::before {
+            content: attr(data-label);
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+
+          .btn-primary {
+            position: absolute;
+            right: 50;
+          }
         }
       }
     }

@@ -8,7 +8,7 @@ header {
   background-color: #d0bb96;
   border-bottom: 4px solid black;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   header {
     height: auto;
     padding: 0 0 0.5rem 0;
@@ -43,6 +43,11 @@ header nav a:not(.logout-btn):hover::after {
 }
 header nav a:not(.logout-btn):hover {
   color: black;
+}
+@media screen and (max-width: 576px) {
+  header nav a:not(.logout-btn) {
+    font-size: 16px;
+  }
 }
 header nav .logout-btn {
   height: 40px;
@@ -588,6 +593,7 @@ footer nav a:not(.no-underline):hover {
 }
 
 .admin-container .admin-table {
+  width: 100%;
   padding: 20px 0 40px 0;
   text-align: center;
 }
@@ -612,6 +618,7 @@ footer nav a:not(.no-underline):hover {
   border-right: 1px solid rgba(154, 154, 154, 0.369);
 }
 .admin-container .admin-table table td {
+  position: relative;
   border: 1px solid rgba(154, 154, 154, 0.369);
   padding: 10px;
   text-align: center;
@@ -627,6 +634,49 @@ footer nav a:not(.no-underline):hover {
   align-items: center;
 }
 
+@media screen and (max-width: 992px) {
+  .admin-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .admin-container .admin-table {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .admin-container .admin-table table {
+    width: 95%;
+  }
+  .admin-container .admin-table table thead {
+    display: none;
+  }
+  .admin-container .admin-table table tr {
+    border-bottom: 3px solid #333;
+  }
+  .admin-container .admin-table table td {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: none;
+    font-size: 1em;
+  }
+  .admin-container .admin-table table td:last-child {
+    border-bottom: 0;
+  }
+  .admin-container .admin-table table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .admin-container .admin-table table td .btn-primary {
+    position: absolute;
+    right: 50;
+  }
+}
 *,
 ::before,
 ::after {
