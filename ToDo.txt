@@ -1,5 +1,0 @@
-Page jouer :
-	Score : -style
-
-Ajouter score sur maquette finale
-Faire 1ère maquette
