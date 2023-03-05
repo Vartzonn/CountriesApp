@@ -26,7 +26,6 @@
       preg_match($pseudoPattern, $pseudo) &&
       preg_match($mailPattern, $mail) &&
       filter_var($mail, FILTER_VALIDATE_EMAIL) &&
-      filter_var($isAdmin, FILTER_VALIDATE_BOOLEAN) &&
       (filter_var($flagScore, FILTER_VALIDATE_INT) !== false) &&
       (filter_var($flagScore, FILTER_VALIDATE_INT) !== false) &&
       (filter_var($flagScore, FILTER_VALIDATE_INT) !== false)

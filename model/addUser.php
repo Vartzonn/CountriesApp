@@ -19,8 +19,7 @@
       preg_match($pseudoPattern, $pseudo) &&
       preg_match($passwordPattern, $password) &&
       preg_match($mailPattern, $mail) &&
-      filter_var($mail, FILTER_VALIDATE_EMAIL) &&
-      filter_var($isAdmin, FILTER_VALIDATE_BOOLEAN)
+      filter_var($mail, FILTER_VALIDATE_EMAIL)
     ) {
       if(!$isAdmin) {
         $isAdmin = 0;
